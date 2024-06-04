@@ -17,21 +17,12 @@ intro.style.margin = "auto";
 intro.style.perspective = "1000px";
 intro.style.height = "100vh";
 intro.style.overflow = "hidden";
-intro.style.position = "relative"
-
-const introBody = document.querySelector(".intro-body");
-introBody.style.position = "absolute";
-introBody.style.top = "5%";
-introBody.style.left = "0";
-//introBody.style.width = "100%";
-introBody.style.transformOrigin = "50% 100%";
-introBody.style.animation = "crawl 60s linear infinite";
-introBody.style.fontSize = "3rem";
-
-
-const pText = introBody.querySelector('p');
-pText.style.margin = "0";
-pText.style.fontSize = "3rem";
+intro.style.position = "absolute";
+intro.style.top = "5%";
+intro.style.left = "0";
+intro.style.transformOrigin = "50% 100%";
+intro.style.animation = "crawl 60s linear infinite";
+intro.style.fontSize = "3rem";
 
 // Define the angle of rotation and initial position
 let angle = 5;
@@ -45,7 +36,7 @@ function animateText() {
     yPos -= scrollSpeed;
 
     // Apply transformation to the text for vertical scrolling
-    introBody.style.transform = `translateY(${yPos}%) rotateX(40deg)`;
+    intro.style.transform = `translateY(${yPos}%) rotateX(40deg)`;
 
     // Loop the animation
     requestAnimationFrame(animateText);
