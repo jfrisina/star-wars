@@ -2,48 +2,50 @@
 // add space background
 document.body.style.background = "url(./images/stars-bg.jpg)";
 
-// center align page content
-document.body.style.textAlign = "justified";
-
 // SCROLLING TEXT ---------------------------------------------------------------------------------
 document.body.style.color = "#DFDA3B";
 document.body.style.fontFamily = "Nanum Gothic, sans-serif";
 document.body.style.fontWeight = "800";
 document.body.style.letterSpacing = "8%";
 
-
 const intro = document.getElementById("intro");
+intro.style.textAlign = "center";
+intro.style.width = "80%";
 intro.style.margin = "auto";
-intro.style.perspective = "1000px";
-intro.style.height = "100vh";
-intro.style.overflow = "hidden";
-intro.style.position = "absolute";
-intro.style.top = "5%";
-intro.style.left = "0";
-intro.style.transformOrigin = "50% 100%";
-intro.style.animation = "crawl 60s linear infinite";
 intro.style.fontSize = "3rem";
+intro.style.lineHeight = "1.4";
+intro.style.position = "relative";
+intro.style.top = "650px";
+// intro.style.transform = "translate(-50%, -50%)";
+// intro.style.overflow = "hidden";
+// intro.style.perspective = "1000px";
 
-// Define the angle of rotation and initial position
-let angle = 5;
-let yPos = 20;
+// justify text
+const pTags = document.querySelectorAll("p");
+ pTags.forEach(pTag => {
+	pTag.style.textAlign = "justify";
+ });
 
-// Define the speed of introBodying (adjust as needed)
-const scrollSpeed = .05;
+// set initial position
+let yPos = 10; // Start offscreen at the bottom
 
-function animateText() {    
+// scrolling speed
+const scrollSpeed = 0.5; // Adjust as needed
+
+// Function to animate the text
+function animateText() {
     // Update the position
     yPos -= scrollSpeed;
 
     // Apply transformation to the text for vertical scrolling
-    intro.style.transform = `translateY(${yPos}%) rotateX(40deg)`;
+    intro.style.transform = `translateY(${yPos}px)`;
 
-    // Loop the animation
+    // Request animation frame for smooth animation
     requestAnimationFrame(animateText);
 }
 
+// Start the animation
 animateText();
-
 
 // BUTTON ---------------------------------------------------------------------------------
 const button = document.querySelector("button");
@@ -57,6 +59,12 @@ button.style.border = "none";
 button.style.borderRadius = "50px";
 button.style.fontWeight = "bold";
 button.style.fontSize = "18px";
+
+const buttonDiv = document.getElementById("button-div");
+buttonDiv.style.textAlign = "center";
+
+// write code so that when the button reaches the center, it stops scrolling while the rest of the text scrolls away
+
 
 // API ------------------------------------------------------------------------------------
 
