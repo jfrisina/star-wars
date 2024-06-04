@@ -26,6 +26,21 @@ const pTags = document.querySelectorAll("p");
 	pTag.style.textAlign = "justify";
  });
 
+ // BUTTON ---------------------------------------------------------------------------------
+const button = document.querySelector("button");
+
+button.style.marginTop = "2rem";
+button.style.padding = "1rem 2rem";
+button.style.backgroundColor = "#DFDA3B"
+button.style.border = "none";
+button.style.borderRadius = "50px";
+button.style.fontWeight = "bold";
+button.style.fontSize = "18px";
+
+const buttonDiv = document.getElementById("button-div");
+buttonDiv.style.textAlign = "center";
+
+ // SCROLLING ---------------------------------------------------------------------------------
 // set initial position
 let yPos = 10; // Start offscreen at the bottom
 
@@ -40,83 +55,60 @@ function animateText() {
     // Apply transformation to the text for vertical scrolling
     intro.style.transform = `translateY(${yPos}px)`;
 
-    // Request animation frame for smooth animation
-    requestAnimationFrame(animateText);
+	// button reaches center 
+	if (button.getBoundingClientRect().top <= window.innerHEight / 2) {
+		// stop button from scrolling
+		cancelAnimationFrame(animateText);
+	} else {
+		// continue scrolling
+		requestAnimationFrame(animateText);
+
+	}
 }
 
 // Start the animation
 animateText();
 
-// BUTTON ---------------------------------------------------------------------------------
-const button = document.querySelector("button");
-button.addEventListener("click", function() {
-	alert("Button clicked!");
-});
-button.style.marginTop = "2rem";
-button.style.padding = "1rem 2rem";
-button.style.backgroundColor = "#DFDA3B"
-button.style.border = "none";
-button.style.borderRadius = "50px";
-button.style.fontWeight = "bold";
-button.style.fontSize = "18px";
-
-const buttonDiv = document.getElementById("button-div");
-buttonDiv.style.textAlign = "center";
-
-// write code so that when the button reaches the center, it stops scrolling while the rest of the text scrolls away
-
 
 // API ------------------------------------------------------------------------------------
-
-
 // create function for grabbing all of the data
-async function getDataFor(endpoint) {
-	const result = await fetch (`https://www.swapi.tech/api/${endpoint}/`);
-	const data = await result.json();
-	return data;
-}
-
-// get data from all Star Wars API endpoints 
 async function fetchData() {
 	try {
-	// fetching all endpoint data concurrently
-	const filmsPromise = getDataFor("films");
-	const peoplePromise = getDataFor("people");
-    const planetsPromise = getDataFor("planets");
-	const speciesPromise = getDataFor("species");
-	const starshipsPromise = getDataFor("starships");
-	const vehiclesPromise = getDataFor("vehicles");
+	const resultPeople = await fetch (`https://www.swapi.tech/api/people/`);
+	const resultPlanets = await fetch (`https://www.swapi.tech/api/planets/`);
+	const resultStarships = await fetch (`https://www.swapi.tech/api/starships/`);
+	const resultVehicles = await fetch (`https://www.swapi.tech/api/vehicles/`);
 
-	// lets them resolve - this is suppose to be faster than me putting the two steps together - let me know if you disagree, cos this way seems tedious, but I wanted to use async/await instead of promises
-	const filmsData = await filmsPromise;
-	const peopleData = await peoplePromise;
-    const planetsData = await planetsPromise;
-	const speciesData = await speciesPromise;
-	const starshipsData = await starshipsPromise;
-	const vehiclesData = await vehiclesPromise;
-	console.log(filmsData);
-	console.log(peopleData);
-	console.log(planetsData);
-	console.log(speciesData);
-	console.log(starshipsData);
-	console.log(vehiclesData);
+	const dataPeople = await resultPeople.json();
+	const dataPlanets = await resultPlanets.json();
+	const dataStarships = await resultStarships.json();
+	const dataVehicles = await resultVehicles.json();
+	
+	console.log(dataPeople.results);
+
+// create random index within array length
+const randomPeople = Math.floor(Math.random() * dataPeople.results.length)
+const people = dataPeople.results[randomPeople].name;
+	console.log(people);
+
+const randomPlanet = Math.floor(Math.random() * dataPlanets.results.length)
+const planet = dataPlanets.results[randomPlanet].name;
+	console.log(planet);
+
+const randomStarship = Math.floor(Math.random() * dataStarships.results.length)
+const starship = dataStarships.results[randomStarship].name;
+	console.log(starship);
+			
+// alert message
+const adventure = `You are going to help the New Empire by going to planet ${planet} with ${people} on the ${starship}.`
+
+	// set up alert
+	button.addEventListener("click", function() {
+		alert(adventure);
+	});
+
  	} catch (error) {
-		console.error("The following droid could not be found:", error);
+		console.error("There was a problem:", error);
 	}
-  }
-  
+}
   fetchData();
-
-
-
-  	// // Loops through the list of pokemon fetched from the api
-	// for (let i = 0; i < data.results.length; i++) {
-	// 	// create a new h1 element
-	// 	const nameDisplay = document.createElement("h1");
-	
-	// 	// sets the text of the element to pokemons name
-	// 	nameDisplay.innerText = data.results[i].name;
-	
-	// 	// displays the element by appending it to the body
-	// 	document.querySelector("body").appendChild(nameDisplay);
-	//   }
