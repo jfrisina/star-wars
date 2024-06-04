@@ -22,7 +22,8 @@ export async function fetchData() {
 
 	const randomStarship = Math.floor(Math.random() * dataStarships.results.length)
 	const starship = dataStarships.results[randomStarship].name;
-	
+
+	return { person, planet, starship };
 	// set error message for if an error occurs
  	} catch (error) {
 		console.error("There was a problem:", error);
