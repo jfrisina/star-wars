@@ -1,5 +1,9 @@
 // NOTE:
 // I know how to use CSS and I am very comfortable with it, so I chose to practice my JS by doing all styling in JS. Just want to assure you that I did it intentionally to help me learn JS better! I know that styling is supposed to be done in the CSS!
+//Known issues: 
+// I tried to make the button stop scrolling once it reached the middle of the screen, but I couldn't get that to work. I was going to add the input after I figured it out.
+// I could not get the text to be angled the way it is in the movies!!!! Drove me nuts!!!!!
+
 
 // create variable to easily target button element
 const button = document.querySelector("button");
@@ -34,14 +38,25 @@ intro.style.fontSize = "3rem";
 intro.style.lineHeight = "1.4";
 intro.style.position = "relative";
 intro.style.top = "650px";
-intro.style.transform = "translateX(-50%) translateY(-50%) rotate(-20deg)";
 
-const pTags = document.querySelectorAll("p"); 
+const introSection = document.getElementById("intro-section");
+
+// Apply styles to the container
+introSection.style.transform = `rotateY(20deg)`;
+introSection.style.transformOrigin = "bottom center";
+introSection.style.overflow = "hidden";
 
 // justify text 
+const pTags = document.querySelectorAll("p"); 
  pTags.forEach(pTag => {
 	pTag.style.textAlign = "justify";
  });
+
+ // INPUT ---------------------------------------------------------------------------------
+ const input = document.getElementById("input-type");
+ input.style.padding = "3%";
+ input.fontSize = "2rem";
+ input.style.borderRadius = "50px";
 
  // BUTTON ---------------------------------------------------------------------------------
 // style button
@@ -56,8 +71,6 @@ button.style.fontSize = "18px";
 // center align the button
 const buttonDiv = document.getElementById("button-div");
 buttonDiv.style.textAlign = "center";
-
-// STOP BUTTON -----------------------------------------------------------------------------
 
 // ALERT ----------------------------------------------------------------------------------			
 // create function to use the API's returned variables in the alert

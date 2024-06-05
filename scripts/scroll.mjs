@@ -9,15 +9,15 @@ export function scrollText() { // export for use in the main script.mjs file by 
 	let yPos = 10; 
 
 	// set scroll speed
-	const scrollSpeed = 5;
+	const scrollSpeed = .5;
 
 	function scroll() {
-		// Update the position by subtracting scrollSpeed from y-axis position. makes text move upwards.
+		// updates the position by subtracting scrollSpeed from y-axis position. makes text move upwards.
 		yPos -= scrollSpeed;
 
 		// apply CSS transformation to the text to make it move up the y-axis.
 		intro.style.transform = `translateY(${yPos}px)`;
-		requestAnimationFrame(scroll);
+		animationID = requestAnimationFrame(scroll);
 	}
 animationID = requestAnimationFrame(scroll);
 }
@@ -32,7 +32,7 @@ export function stopButtonScrolling() {
         const buttonBottom = buttonRect.bottom;
         const viewportHeight = window.innerHeight;
 
-		   // Calculate the center of the viewport
+		   // Calculate the center of the screen
 		   const viewportCenter = viewportHeight / 2;
 
         if (buttonTop <= viewportCenter + 50 && buttonBottom >= viewportCenter - 50) {
