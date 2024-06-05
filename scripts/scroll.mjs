@@ -1,11 +1,5 @@
 // SCROLLING TEXT ---------------------------------------------------------------------------------
-
-// justify text 
-export const pTags = document.querySelectorAll("p"); // export for use in the main script.mjs file by adding "export" in front of the variable/function
-
- pTags.forEach(pTag => {
-	pTag.style.textAlign = "justify";
- });
+let animationID;
 
 // function to make scrolling happen
 export function scrollText() { // export for use in the main script.mjs file by adding "export" in front of the variable/function
@@ -23,12 +17,10 @@ export function scrollText() { // export for use in the main script.mjs file by 
 
 		// apply CSS transformation to the text to make it move up the y-axis.
 		intro.style.transform = `translateY(${yPos}px)`;
-		let animationID = requestAnimationFrame(scroll);
+		requestAnimationFrame(scroll);
 	}
-scroll();
+animationID = requestAnimationFrame(scroll);
 }
-// Define a variable to store the ID returned by requestAnimationFrame
-let animationID = requestAnimationFrame(scroll);
 
 // Function to stop the button's scrolling animation when it reaches a certain point in the viewport
 export function stopButtonScrolling() {
@@ -40,8 +32,11 @@ export function stopButtonScrolling() {
         const buttonBottom = buttonRect.bottom;
         const viewportHeight = window.innerHeight;
 
-        if (buttonTop <= viewportHeight / 2 || buttonBottom <= viewportHeight) {
-            cancelAnimationFrame(scrollText);
+		   // Calculate the center of the viewport
+		   const viewportCenter = viewportHeight / 2;
+
+        if (buttonTop <= viewportCenter + 50 && buttonBottom >= viewportCenter - 50) {
+            cancelAnimationFrame(animationID);
         } else {
             requestAnimationFrame(checkButtonPosition);
         }
@@ -52,4 +47,5 @@ export function stopButtonScrolling() {
 
 scrollText();
 stopButtonScrolling();
+
 

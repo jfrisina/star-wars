@@ -1,15 +1,12 @@
 // NOTE:
 // I know how to use CSS and I am very comfortable with it, so I chose to practice my JS by doing all styling in JS. Just want to assure you that I did it intentionally to help me learn JS better! I know that styling is supposed to be done in the CSS!
 
-// I wasn't able to use my imported pTags
-
 // create variable to easily target button element
 const button = document.querySelector("button");
 
 // import scroll.mjs 
-import { pTags, scrollText, stopButtonScrolling } from './scroll.mjs';
+import { scrollText } from './scroll.mjs';
 scrollText();
-stopButtonScrolling();
 
 // import api.mjs
 import { fetchData } from "./api.mjs";
@@ -37,7 +34,15 @@ intro.style.fontSize = "3rem";
 intro.style.lineHeight = "1.4";
 intro.style.position = "relative";
 intro.style.top = "650px";
-intro.style.transform = "translateX(100%) rotate(-20deg)";
+intro.style.transform = "translateX(-50%) translateY(-50%) rotate(-20deg)";
+
+const pTags = document.querySelectorAll("p"); 
+
+// justify text 
+ pTags.forEach(pTag => {
+	pTag.style.textAlign = "justify";
+ });
+
  // BUTTON ---------------------------------------------------------------------------------
 // style button
 button.style.marginTop = "2rem";
