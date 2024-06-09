@@ -32,19 +32,19 @@ const intro = document.getElementById("intro");
 
 // style the scrolling text
 intro.style.textAlign = "center";
-intro.style.width = "80%";
+intro.style.width = "70%";
 intro.style.margin = "auto";
 intro.style.fontSize = "3rem";
 intro.style.lineHeight = "1.4";
 intro.style.position = "relative";
-intro.style.top = "650px";
-
+intro.style.top = "500px";
 const introSection = document.getElementById("intro-section");
 
 // Apply styles to the container
-introSection.style.transform = `rotateY(20deg)`;
-introSection.style.transformOrigin = "bottom center";
-introSection.style.overflow = "hidden";
+introSection.style.transform = `perspective(400px) rotateX(30deg)`;
+//introSection.style.transformOrigin = "bottom center";
+introSection.style.transformOrigin = "50% 700px";
+//introSection.style.overflow = "hidden";
 
 // justify text 
 const pTags = document.querySelectorAll("p"); 
